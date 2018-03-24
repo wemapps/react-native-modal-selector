@@ -36,6 +36,7 @@ const propTypes = {
     sectionStyle:                   ViewPropTypes.style,
     childrenContainerStyle:         ViewPropTypes.style,
     touchableStyle:                 ViewPropTypes.style,
+    touchableActiveOpacity:         PropTypes.number,
     sectionTextStyle:               Text.propTypes.style,
     cancelContainerStyle:           ViewPropTypes.style,
     cancelStyle:                    ViewPropTypes.style,
@@ -68,6 +69,7 @@ const defaultProps = {
     sectionStyle:                   {},
     childrenContainerStyle:         {},
     touchableStyle:                 {},
+    touchableActiveOpacity:         0.2,
     sectionTextStyle:               {},
     cancelContainerStyle:           {},
     cancelStyle:                    {},
@@ -138,6 +140,7 @@ export default class ModalSelector extends React.Component {
             <TouchableOpacity
               key={this.props.keyExtractor(option)}
               onPress={() => this.onChange(option)}
+              activeOpacity={this.props.touchableActiveOpacity}
               accessible={this.props.accessible}
               accessibilityLabel={option.accessibilityLabel || undefined}
               {...this.props.passThruProps}
@@ -173,7 +176,7 @@ export default class ModalSelector extends React.Component {
                         </ScrollView>
                     </View>
                     <View style={[styles.cancelContainer, this.props.cancelContainerStyle]}>
-                        <TouchableOpacity onPress={this.close} accessible={this.props.accessible} accessibilityLabel={this.props.cancelButtonAccessibilityLabel}>
+                        <TouchableOpacity onPress={this.close} activeOpacity={this.props.touchableActiveOpacity} accessible={this.props.accessible} accessibilityLabel={this.props.cancelButtonAccessibilityLabel}>
                             <View style={[styles.cancelStyle, this.props.cancelStyle]}>
                                 <Text style={[styles.cancelTextStyle,this.props.cancelTextStyle]}>{this.props.cancelText}</Text>
                             </View>
@@ -214,7 +217,7 @@ export default class ModalSelector extends React.Component {
         return (
             <View style={this.props.style} {...this.props.passThruProps}>
                 {dp}
-                <TouchableOpacity style={this.props.touchableStyle} onPress={this.open} disabled={this.props.disabled}>
+                <TouchableOpacity activeOpacity={this.props.touchableActiveOpacity} style={this.props.touchableStyle} onPress={this.open} disabled={this.props.disabled}>
                     <View style={this.props.childrenContainerStyle} pointerEvents="none">
                         {this.renderChildren()}
                     </View>

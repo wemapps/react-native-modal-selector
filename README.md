@@ -112,6 +112,7 @@ Prop                | Type     | Optional | Default      | Description
 `disabled`          | bool     | Yes      | false        | `true` disables opening of the modal
 `childrenContainerStyle`| object   | Yes      | {}           | style definitions for the children container view
 `touchableStyle`    | object   | Yes      | {}           | style definitions for the touchable element
+`touchableActiveOpacity`    | number   | Yes      | 0.2           | opacity for the touchable element on touch
 `supportedOrientations`    | ['portrait', 'landscape'] | Yes      | both      | orientations the modal supports
 `keyboardShouldPersistTaps`| `string` / `bool`         | Yes      | `always`  | passed to underlying ScrollView
 `style`             | object   | Yes      |              | style definitions for the root element
