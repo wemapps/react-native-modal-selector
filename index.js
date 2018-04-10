@@ -103,9 +103,9 @@ export default class ModalSelector extends React.Component {
         };
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.initValue !== this.props.initValue) {
-            this.setState({selected: nextProps.initValue});
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.initValue !== this.props.initValue) {
+            this.setState({selected: this.props.initValue});
         }
     }
 
