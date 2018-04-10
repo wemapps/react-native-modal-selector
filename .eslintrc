@@ -74,7 +74,7 @@
       afterColon: true,
       align: "value"
     }],
-    no-empty-function: 2,
+    no-empty-function: [2, {allow: ["arrowFunctions"]}],
     comma-dangle: ["error", {
         "arrays": "always-multiline",
         "objects": "always-multiline",

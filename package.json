@@ -1,13 +1,13 @@
 {
   "name": "react-native-modal-selector",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "A cross-platform (iOS / Android), selector/picker component for React Native that is highly customizable and supports sections.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postversion": "git push && git push --tags",
-    "lint": "eslint ./",
-    "lint-fix": "eslint --fix ./"
+    "lint": "./node_modules/.bin/eslint ./",
+    "lint-fix": "./node_modules/.bin/eslint --fix ./"
   },
   "repository": {
     "type": "git",
