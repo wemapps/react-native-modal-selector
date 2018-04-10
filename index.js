@@ -27,6 +27,7 @@ const propTypes = {
     onModalClose:                   PropTypes.func,
     keyExtractor:                   PropTypes.func,
     labelExtractor:                 PropTypes.func,
+    visible:                        PropTypes.bool,
     initValue:                      PropTypes.string,
     animationType:                  Modal.propTypes.animationType,
     style:                          ViewPropTypes.style,
@@ -62,6 +63,7 @@ const defaultProps = {
     onModalClose:                   () => {},
     keyExtractor:                   (item) => item.key,
     labelExtractor:                 (item) => item.label,
+    visible:                        false,
     initValue:                      'Select me!',
     animationType:                  'slide',
     style:                          {},
@@ -96,7 +98,7 @@ export default class ModalSelector extends React.Component {
         super(props);
 
         this.state = {
-            modalVisible:  false,
+            modalVisible:  props.visible,
             selected:      props.initValue,
             cancelText:    props.cancelText,
             changedItem:   undefined,
@@ -104,8 +106,18 @@ export default class ModalSelector extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        let newState = {};
+        let doUpdate = false;
         if (prevProps.initValue !== this.props.initValue) {
-            this.setState({selected: this.props.initValue});
+            newState.selected = this.props.initValue;
+            doUpdate = true;
+        }
+        if (prevProps.visible !== this.props.visible) {
+            newState.modalVisible = this.props.visible;
+            doUpdate = true;
+        }
+        if (doUpdate) {
+            this.setState(newState);
         }
     }
 
