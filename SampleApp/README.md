@@ -18,3 +18,8 @@ $ npm run nodemon
 ```
 
 You can now edit the files in `../`, and they will be synced to `node_modules/react-native-modal-selector/`
+
+
+# Modifying react-native-modal-selector (RNMS) code during development
+
+The RNMS source code is copied post-install due to a circular symlink bug.  If the RNMS code changes, you must run `npm run postinstall` to update it in this sample app.
