@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 
 import {
     View,
+    Text,
     TextInput,
     Switch
 } from 'react-native';
@@ -24,7 +25,7 @@ class SampleApp extends Component {
         let index = 0;
         const data = [
             { key: index++, section: true, label: 'Fruits' },
-            { key: index++, label: 'Red Apples' },
+            { key: index++, label: 'Red Apples', component: <View style={{backgroundColor: 'red', borderRadius: 5, alignItems: 'center'}}><Text style={{color: 'white'}}>Red Apples custom component ☺</Text></View> },
             { key: index++, label: 'Cherries' },
             { key: index++, label: 'Cranberries' },
             { key: index++, label: 'Pink Grapefruit' },

@@ -87,10 +87,21 @@ class SampleApp extends Component {
 
 ## Data Format
 
-The selector accept a specific format of data:
+The selector accepts a specific format of data:
 ```javascript
 [{ key: 5, label: 'Red Apples' }]
 ```
+
+Optionally provide a `component` key which overrides the default label text:
+```javascript
+[{
+  key: 5,
+  label: 'Red Apples',
+  component: <View style={{backgroundColor: 'red'}}><Text style={{color: 'white'}}>Red Apples custom component ☺</Text></View>
+}]
+```
+
+<img src="https://user-images.githubusercontent.com/6295083/51210593-d3fbae00-18d8-11e9-8f51-d1ca4f9f8267.png" />
 
 If your data has a specific format, you can define extractors of data, example:
 ```javascript
@@ -110,14 +121,15 @@ return (
 ### Props
 Prop                | Type     | Optional | Default      | Description
 ------------------- | -------- | -------- | ------------ | -----------
-`data`              | array    | No       | []           | array of objects with a unique key and label to select in the modal.
+`data`              | array    | No       | []           | array of objects with a unique `key` and `label` to select in the modal. Optional `component` overrides label text.
 `onChange`          | function | Yes      | () => {}     | callback function, when the users has selected an option
 `onModalOpen`       | function | Yes      | () => {}     | callback function, when modal is opening
 `onModalClose`      | function | Yes      | () => {}     | callback function, when modal is closing
 `keyExtractor`      | function | Yes      | (data) => data.key   | extract the key from the data item
 `labelExtractor`    | function | Yes      | (data) => data.label | extract the label from the data item
+`componentExtractor`| function | Yes      | (data) => data.component | extract the component from the data item
 `visible`           | bool     | Yes      | false        | control open/close state of modal
-`closeOnChange`´    | bool     | Yes      | true         | control if modal closes on select
+`closeOnChange`    | bool     | Yes      | true         | control if modal closes on select
 `initValue`         | string   | Yes      | `Select me!` | text that is initially shown on the button
 `cancelText`        | string   | Yes      | `cancel`     | text of the cancel button
 `animationType`     | string   | Yes      | `slide`      | type of animation to be used to show the modal. Must be one of `none`, `slide` or `fade`.

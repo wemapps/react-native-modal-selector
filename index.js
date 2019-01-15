@@ -72,6 +72,7 @@ const defaultProps = {
     onModalClose:                   () => {},
     keyExtractor:                   (item) => item.key,
     labelExtractor:                 (item) => item.label,
+    componentExtractor:             (item) => item.component,
     visible:                        false,
     closeOnChange:                  true,
     initValue:                      'Select me!',
@@ -170,16 +171,28 @@ export default class ModalSelector extends React.Component {
     }
 
     renderSection = (section) => {
+        const optionComponent = this.props.componentExtractor(section);
+        let component = optionComponent || (
+          <Text style={[styles.sectionTextStyle,this.props.sectionTextStyle]}>{this.props.labelExtractor(section)}</Text>
+        );
+
         return (
             <View key={this.props.keyExtractor(section)} style={[styles.sectionStyle,this.props.sectionStyle]}>
-                <Text style={[styles.sectionTextStyle,this.props.sectionTextStyle]}>{this.props.labelExtractor(section)}</Text>
+                {component}
             </View>
         );
     }
 
     renderOption = (option, isLastItem, isFirstItem) => {
+        const optionComponent = this.props.componentExtractor(option);
         const optionLabel = this.props.labelExtractor(option);
         const isSelectedItem = optionLabel === this.state.selected;
+
+        let component = optionComponent || (
+          <Text style={[styles.optionTextStyle,this.props.optionTextStyle,isSelectedItem && this.props.selectedItemTextStyle]} {...this.props.optionTextPassThruProps}>
+              {optionLabel}
+          </Text>
+        );
 
         return (
             <TouchableOpacity
@@ -191,11 +204,8 @@ export default class ModalSelector extends React.Component {
               importantForAccessibility={isFirstItem}
               {...this.props.passThruProps}
             >
-                <View style={[styles.optionStyle, this.props.optionStyle, isLastItem &&
-                {borderBottomWidth: 0}]}>
-                    <Text style={[styles.optionTextStyle,this.props.optionTextStyle,isSelectedItem && this.props.selectedItemTextStyle]} {...this.props.optionTextPassThruProps}>
-                        {optionLabel}
-                    </Text>
+                <View style={[styles.optionStyle, this.props.optionStyle, isLastItem && {borderBottomWidth: 0}]}>
+                  {component}
                 </View>
             </TouchableOpacity>);
     }
