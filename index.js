@@ -71,6 +71,7 @@ const propTypes = {
     optionTextPassThruProps:        PropTypes.object,
     modalOpenerHitSlop:             PropTypes.object,
     customSelector:                 PropTypes.node,
+    selectedKey:                    PropTypes.any,
 };
 
 const defaultProps = {
@@ -106,7 +107,7 @@ const defaultProps = {
     supportedOrientations:          ['portrait', 'landscape'],
     keyboardShouldPersistTaps:      'always',
     backdropPressToClose:           false,
-    openButtonContainerAccessible:     false,
+    openButtonContainerAccessible:  false,
     listItemAccessible:             false,
     cancelButtonAccessible:         false,
     scrollViewAccessible:           false,
@@ -117,18 +118,19 @@ const defaultProps = {
     optionTextPassThruProps:        {},
     modalOpenerHitSlop:             {top: 0, bottom: 0, left: 0, right: 0},
     customSelector:                 undefined,
+    selectedKey:                    '',
 };
 
 export default class ModalSelector extends React.Component {
 
     constructor(props) {
         super(props);
-
+        let selectedItem = this.validateSelectedKey(props.selectedKey);
         this.state = {
             modalVisible:  props.visible,
-            selected:      props.initValue,
+            selected:      selectedItem.label,
             cancelText:    props.cancelText,
-            changedItem:   undefined,
+            changedItem:   selectedItem.key,
         };
     }
 
@@ -143,9 +145,22 @@ export default class ModalSelector extends React.Component {
             newState.modalVisible = this.props.visible;
             doUpdate = true;
         }
+        if(prevProps.selectedKey !== this.props.selectedKey){
+            let selectedItem = this.validateSelectedKey(this.props.selectedKey);
+            newState.selected = selectedItem.label;
+            newState.changedItem = selectedItem.key;
+            doUpdate = true;
+        }
         if (doUpdate) {
             this.setState(newState);
         }
+    }
+
+    validateSelectedKey = (key) => {
+        let selectedItem = this.props.data.filter((item) => this.props.keyExtractor(item) === key);
+        let selectedLabel = selectedItem.length > 0 ? this.props.labelExtractor(selectedItem[0]) : this.props.initValue;
+        let selectedKey = selectedItem.length > 0 ? key : undefined;
+        return {label: selectedLabel, key: selectedKey}
     }
 
     onChange = (item) => {
