@@ -47,6 +47,7 @@ const propTypes = {
     cancelStyle:                    ViewPropTypes.style,
     cancelTextStyle:                Text.propTypes.style,
     overlayStyle:                   ViewPropTypes.style,
+    initValueTextStyle:             Text.propTypes.style,
     cancelText:                     PropTypes.string,
     disabled:                       PropTypes.bool,
     supportedOrientations:          PropTypes.arrayOf(
@@ -102,6 +103,7 @@ const defaultProps = {
     cancelStyle:                    {},
     cancelTextStyle:                {},
     overlayStyle:                   {},
+    initValueTextStyle:             {},
     cancelText:                     'cancel',
     disabled:                       false,
     supportedOrientations:          ['portrait', 'landscape'],
@@ -272,9 +274,11 @@ export default class ModalSelector extends React.Component {
         if(this.props.children) {
             return this.props.children;
         }
+        let initSelectStyle = this.props.initValue === this.state.selected ?
+            [styles.initValueTextStyle, this.props.initValueTextStyle] : [styles.selectTextStyle, this.props.selectTextStyle];
         return (
             <View style={[styles.selectStyle, this.props.selectStyle]}>
-                <Text style={[styles.selectTextStyle, this.props.selectTextStyle]} {...this.props.selectTextPassThruProps}>{this.state.selected}</Text>
+                <Text style={initSelectStyle} {...this.props.selectTextPassThruProps}>{this.state.selected}</Text>
             </View>
         );
     }
