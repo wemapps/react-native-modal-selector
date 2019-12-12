@@ -172,7 +172,7 @@ export default class ModalSelector extends React.Component {
         }
         this.setState({ selected: this.props.labelExtractor(item), changedItem: item }, () => {
           if (this.props.closeOnChange)
-            this.close();
+            this.close(item);
         });
     }
 
@@ -180,8 +180,8 @@ export default class ModalSelector extends React.Component {
       return this.state.changedItem;
     }
 
-    close = () => {
-        this.props.onModalClose();
+    close = (item) => {
+        this.props.onModalClose(item);
         this.setState({
             modalVisible: false,
         });
