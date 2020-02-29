@@ -13,8 +13,8 @@ Use [nodemon](https://github.com/remy/nodemon) to keep the module in sync with `
 
 ```
 $ npm install
-$ react-native run-[ios|android]
 $ npm run nodemon
+$ npm run start
 ```
 
 You can now edit the files in `../`, and they will be synced to `node_modules/react-native-modal-selector/`
@@ -22,4 +22,7 @@ You can now edit the files in `../`, and they will be synced to `node_modules/re
 
 # Modifying react-native-modal-selector (RNMS) code during development
 
-The RNMS source code is copied post-install due to a circular symlink bug.  If the RNMS code changes, you must run `npm run postinstall` to update it in this sample app.
+If the nodemon watcher doesn't work on your system, run `npm run postinstall` to update the library code in this sample app.  This must be done manually every time the library's code changes.  For Windows, the `postinstall` script must be modified to:
+```
+  "postinstall": "copy /y ..\\*.js node_modules\\react-native-modal-selector",
+```

@@ -48,7 +48,11 @@ class SampleApp extends Component {
                 <ModalSelector
                     data={data}
                     initValue="Select something yummy!"
-                    onChange={option => { alert(`${option.label} (${option.key}) nom nom nom`) }} />
+                    initValueTextStyle={{color: "black"}}
+                    selectStyle={{borderColor: "black"}}
+                    selectTextStyle={{color: "blue"}}
+                    onChange={option => { alert(`${option.label} (${option.key}) nom nom nom`) }}
+                />
 
                 { /*
                     Wrapper mode: just wrap your existing component with ModalSelector.
@@ -60,9 +64,10 @@ class SampleApp extends Component {
                     onChange={option => { this.setState({textInputValue:option.label}) }}>
 
                     <TextInput
-                        style={{ borderWidth: 1, borderColor: '#ccc', padding: 10, height: 40 }}
+                        style={{ borderWidth: 1, borderColor: "black", padding: 10, height: 40 }}
                         editable={false}
                         placeholder="Select something yummy!"
+                        placeholderTextColor={"black"}
                         value={this.state.textInputValue} />
 
                 </ModalSelector>
@@ -78,6 +83,7 @@ class SampleApp extends Component {
                         <Switch
                             style={{ alignSelf: 'center' }}
                             onValueChange={() => this.selector.open()}
+                            thumbColor={"#88f"}
                         />
                     }
                 />
