@@ -73,6 +73,8 @@ const propTypes = {
     modalOpenerHitSlop:             PropTypes.object,
     customSelector:                 PropTypes.node,
     selectedKey:                    PropTypes.any,
+    enableShortPress:               PropTypes.bool,
+    enableLongPress:                PropTypes.bool,
 };
 
 const defaultProps = {
@@ -121,6 +123,8 @@ const defaultProps = {
     modalOpenerHitSlop:             {top: 0, bottom: 0, left: 0, right: 0},
     customSelector:                 undefined,
     selectedKey:                    '',
+    enableShortPress:               true,
+    enableLongPress:                false,
 };
 
 export default class ModalSelector extends React.Component {
@@ -187,8 +191,14 @@ export default class ModalSelector extends React.Component {
         });
     }
 
-    open = () => {
-        this.props.onModalOpen();
+    open = (params = {}) => {
+        if (!params.longPress && !this.props.enableShortPress) {
+          return;
+        }
+        if (params.longPress && !this.props.enableLongPress) {
+          return;
+        }
+        this.props.onModalOpen(params);
         this.setState({
             modalVisible: true,
             changedItem:  undefined,
@@ -320,6 +330,7 @@ export default class ModalSelector extends React.Component {
                         activeOpacity={this.props.touchableActiveOpacity}
                         style={this.props.touchableStyle}
                         onPress={this.open}
+                        onLongPress={() => this.open({longPress: true})}
                         disabled={this.props.disabled}
                         accessible={this.props.openButtonContainerAccessible}
                     >
