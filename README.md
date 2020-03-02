@@ -181,7 +181,7 @@ Prop                | Type     | Optional | Default      | Description
 `customSelector`     | node   | Yes | undefined          | Render a custom node instead of the built-in select box.
 `selectedKey`        | any    | Yes | ''                 | Key of the item to be initially selected
 `enableShortPress`          | bool   | Yes | true               | enables short press. This is regular touch behavior.
-`enableShortPress`          | bool   | Yes | false              | enables long press. When true, `onModalOpen` returns `{longPress: true}`
+`enableLongPress`           | bool   | Yes | false              | enables long press. When true, `onModalOpen` returns `{longPress: true}`
 
 ### Methods
 
