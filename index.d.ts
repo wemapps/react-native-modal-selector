@@ -309,6 +309,13 @@ interface IModalSelectorProps<TOption> {
   optionTextPassThruProps?: object;
 
   /**
+   * props to pass through to the internal ScrollView
+   *
+   * Default is `{}`
+   */
+  scrollViewPassThruProps?: object;
+
+  /**
    * How far touch can stray away from touchable that opens modal
    * 
    * Default is `{}`

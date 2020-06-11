@@ -10,7 +10,6 @@ import {
     ScrollView,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    Platform,
     ViewPropTypes as RNViewPropTypes,
 } from 'react-native';
 
@@ -70,6 +69,7 @@ const propTypes = {
     passThruProps:                  PropTypes.object,
     selectTextPassThruProps:        PropTypes.object,
     optionTextPassThruProps:        PropTypes.object,
+    scrollViewPassThruProps:        PropTypes.object,
     modalOpenerHitSlop:             PropTypes.object,
     customSelector:                 PropTypes.node,
     selectedKey:                    PropTypes.any,
@@ -120,6 +120,7 @@ const defaultProps = {
     passThruProps:                  {},
     selectTextPassThruProps:        {},
     optionTextPassThruProps:        {},
+    scrollViewPassThruProps:        {},
     modalOpenerHitSlop:             {top: 0, bottom: 0, left: 0, right: 0},
     customSelector:                 undefined,
     selectedKey:                    '',
@@ -243,12 +244,29 @@ export default class ModalSelector extends React.Component {
     }
 
     renderOptionList = () => {
+        const {
+            data,
+            backdropPressToClose,
+            scrollViewPassThruProps,
+            overlayStyle,
+            optionContainerStyle,
+            keyboardShouldPersistTaps,
+            scrollViewAccessible,
+            scrollViewAccessibilityLabel,
+            cancelContainerStyle,
+            touchableActiveOpacity,
+            cancelButtonAccessible,
+            cancelButtonAccessibilityLabel,
+            cancelStyle,
+            cancelTextStyle,
+            cancelText,
+        } = this.props;
 
-        let options = this.props.data.map((item, index) => {
+        let options = data.map((item, index) => {
             if (item.section) {
                 return this.renderSection(item);
             }
-            return this.renderOption(item, index === this.props.data.length - 1, index === 0);
+            return this.renderOption(item, index === data.length - 1, index === 0);
         });
 
         let Overlay = View;
@@ -256,7 +274,7 @@ export default class ModalSelector extends React.Component {
             style: {flex:1}
         };
         // Some RN versions have a bug here, so making the property opt-in works around this problem
-        if (this.props.backdropPressToClose) {
+        if (backdropPressToClose) {
           Overlay = TouchableWithoutFeedback;
           overlayProps = {
               key: `modalSelector${componentIndex++}`,
@@ -265,20 +283,30 @@ export default class ModalSelector extends React.Component {
           };
         }
 
+        const optionsContainerStyle = {paddingHorizontal: 10};
+        if (scrollViewPassThruProps && scrollViewPassThruProps.horizontal) {
+          optionsContainerStyle.flexDirection = 'row';
+        }
+
         return (
             <Overlay {...overlayProps}>
-                <View style={[styles.overlayStyle, this.props.overlayStyle]}>
-                    <View style={[styles.optionContainer, this.props.optionContainerStyle]}>
-                        <ScrollView keyboardShouldPersistTaps={this.props.keyboardShouldPersistTaps} accessible={this.props.scrollViewAccessible} accessibilityLabel={this.props.scrollViewAccessibilityLabel}>
-                            <View style={{paddingHorizontal: 10}}>
+                <View style={[styles.overlayStyle, overlayStyle]}>
+                    <View style={[styles.optionContainer, optionContainerStyle]}>
+                        <ScrollView
+                            keyboardShouldPersistTaps={keyboardShouldPersistTaps}
+                            accessible={scrollViewAccessible}
+                            accessibilityLabel={scrollViewAccessibilityLabel}
+                            {...scrollViewPassThruProps}
+                        >
+                            <View style={optionsContainerStyle}>
                                 {options}
                             </View>
                         </ScrollView>
                     </View>
-                    <View style={[styles.cancelContainer, this.props.cancelContainerStyle]}>
-                        <TouchableOpacity onPress={this.close} activeOpacity={this.props.touchableActiveOpacity} accessible={this.props.cancelButtonAccessible} accessibilityLabel={this.props.cancelButtonAccessibilityLabel}>
-                            <View style={[styles.cancelStyle, this.props.cancelStyle]}>
-                                <Text style={[styles.cancelTextStyle,this.props.cancelTextStyle]}>{this.props.cancelText}</Text>
+                    <View style={[styles.cancelContainer, cancelContainerStyle]}>
+                        <TouchableOpacity onPress={this.close} activeOpacity={touchableActiveOpacity} accessible={cancelButtonAccessible} accessibilityLabel={cancelButtonAccessibilityLabel}>
+                            <View style={[styles.cancelStyle, cancelStyle]}>
+                                <Text style={[styles.cancelTextStyle,cancelTextStyle]}>{cancelText}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
