@@ -106,12 +106,14 @@ The selector accepts a specific format of data:
 [{ key: 5, label: 'Red Apples' }]
 ```
 
-Optionally provide a `component` key which overrides the default label text:
+Optionally provide a `component` key which overrides the default label text. Optionally provide a unique `testID` for each item:
 ```javascript
 [{
   key: 5,
   label: 'Red Apples',
-  component: <View style={{backgroundColor: 'red'}}><Text style={{color: 'white'}}>Red Apples custom component ☺</Text></View>
+  // The next keys are optional --
+  component: <View style={{backgroundColor: 'red'}}><Text style={{color: 'white'}}>Red Apples custom component ☺</Text></View>,
+  testID: '5-red-apples'
 }]
 ```
 
@@ -135,7 +137,7 @@ return (
 ### Props
 Prop                | Type     | Optional | Default      | Description
 ------------------- | -------- | -------- | ------------ | -----------
-`data`              | array    | No       | []           | array of objects with a unique `key` and `label` to select in the modal. Optional `component` overrides label text.
+`data`              | array    | No       | []           | array of objects with a unique `key` and `label` to select in the modal. Optional `component` overrides label text. Optional unique `testID` for each item.
 `onChange`          | function | Yes      | () => {}     | callback function, when the users has selected an option
 `onModalOpen`       | function | Yes      | () => {}     | callback function, when modal is opening
 `onModalClose`      | function | Yes      | (item) => {} | callback function, when modal is closing. Returns the selected item.
@@ -183,6 +185,7 @@ Prop                | Type     | Optional | Default      | Description
 `selectedKey`        | any    | Yes | ''                 | Key of the item to be initially selected
 `enableShortPress`          | bool   | Yes | true               | enables short press. This is regular touch behavior.
 `enableLongPress`           | bool   | Yes | false              | enables long press. When true, `onModalOpen` returns `{longPress: true}`
+`optionsTestIDPrefix`       | string   | Yes | `'default'`      | This prefixes each selectable option's testID prop if no testID keys are provided in `props.data` array objects. Default for each option's testID: 'default-\<optionLabel\>'
 
 ### Methods
 
