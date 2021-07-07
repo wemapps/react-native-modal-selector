@@ -175,6 +175,9 @@ export default class ModalSelector extends React.Component {
     }
 
     onChange = (item) => {
+        if (!item || !item.key) {
+          return;
+        }
         this.props.onChange(item);
         this.setState({ selected: this.props.labelExtractor(item), changedItem: item }, () => {
           if (this.props.closeOnChange)
