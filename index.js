@@ -175,7 +175,7 @@ export default class ModalSelector extends React.Component {
     }
 
     onChange = (item) => {
-        if (!item || !item.key) {
+        if (!item || item.key == null) { // == coercion
           return;
         }
         this.props.onChange(item);
