@@ -83,9 +83,9 @@ const defaultProps = {
     onChange:                       () => {},
     onModalOpen:                    () => {},
     onModalClose:                   () => {},
-    keyExtractor:                   (item) => item.key,
-    labelExtractor:                 (item) => item.label,
-    componentExtractor:             (item) => item.component,
+    keyExtractor:                   (item) => item && item.key,
+    labelExtractor:                 (item) => item && item.label,
+    componentExtractor:             (item) => item && item.component,
     listType:                       'SCROLLVIEW',
     visible:                        false,
     closeOnChange:                  true,
@@ -175,7 +175,8 @@ export default class ModalSelector extends React.Component {
     }
 
     onChange = (item) => {
-        if (!item || item.key == null) { // == coercion
+        const key = this.props.keyExtractor(item);
+        if (!item || key == null) { // == coercion
           return;
         }
         this.props.onChange(item);
