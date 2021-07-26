@@ -49,7 +49,7 @@ interface IModalSelectorProps<TOption> {
    *
    * Default is `() => {}`
    */
-  onModalClose?: () => void;
+  onModalClose?: (option: TOption) => void;
 
   /**
    * Extract the key from the data item
