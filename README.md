@@ -11,22 +11,8 @@ This project is the official continuation of the abandoned `react-native-modal-p
 ## Install
 
 ```sh
-npm i react-native-modal-selector --save
+npm install react-native-modal-selector
 ```
-
-
-## Live support
-
-### Get help
-
-If you have an urgent problem, hire a mentor for a 1:1 live session on Git-Start:
-[![Get 1:1 live support for your issue.](https://git-start.com/assets/git-start-mentee-banner-medium.svg?sanitize=true)](https://git-start.com/help-request/create/peacechen%2Freact-native-modal-selector)
-
-### Provide help
-
-Help others in paid 1:1 live sessions to get started.
-[![Give paid 1:1 live support.](https://git-start.com/assets/git-start-mentor-banner-medium.svg?sanitize=true)](https://git-start.com/help-request/overview/peacechen%2Freact-native-modal-selector)
-
 
 ## Usage
 
@@ -35,7 +21,6 @@ You can either use this component in its default mode, as a wrapper around your 
 See `SampleApp` for an example how to use this component.
 
 ```jsx
-
 import ModalSelector from 'react-native-modal-selector'
 
 class SampleApp extends Component {
@@ -132,9 +117,10 @@ return (
 );
 ```
 
-
 ## API
+
 ### Props
+
 Prop                | Type     | Optional | Default      | Description
 ------------------- | -------- | -------- | ------------ | -----------
 `data`              | array    | No       | []           | array of objects with a unique `key` and `label` to select in the modal. Optional `component` overrides label text. Optional unique `testID` for each item.
@@ -191,4 +177,10 @@ Prop                | Type     | Optional | Default      | Description
 
 ### Methods
 
-`getSelectedItem()`: get current selected item, updated by onChange event.
+* `open()`: open the modal.
+* `close()`: close the modal.
+* `getSelectedItem()`: get current selected item, updated by onChange event.
+
+## See also
+
+* A similar project is [hepter/react-native-modal-selector-searchable](https://github.com/hepter/react-native-modal-selector-searchable), which is a fork of this module that adds searching capabilities.
