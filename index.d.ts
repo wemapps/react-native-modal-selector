@@ -14,6 +14,8 @@ type AnimationType = 'none' | 'slide' | 'fade';
 type OrientationType = 'portrait' | 'portrait-upside-down' | 'landscape' | 'landscape-left' | 'landscape-right';
 type ListType = 'SCROLLVIEW' | 'FLATLIST';
 
+export type ModalSelectorProps = IModalSelectorProps<IOption>;
+
 interface IModalSelectorProps<TOption> {
   /**
    * Array of objects with a unique key and label to select in the modal
