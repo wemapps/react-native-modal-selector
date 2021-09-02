@@ -350,4 +350,6 @@ interface IModalSelectorProps<TOption> {
   selectedKey?: React.Key;
 }
 
-export default class ModalSelector<TOption = IOption> extends React.Component<IModalSelectorProps<TOption> & FlatListProps<any>, any> {}
+type FlatListCustom<T> = Omit<FlatListProps<T>, "renderItem">
+
+export default class ModalSelector<TOption = IOption> extends React.Component<IModalSelectorProps<TOption> & FlatListCustom<any>, any> {}
