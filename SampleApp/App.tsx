@@ -135,7 +135,7 @@ export const SampleApp = () => {
         data={countryList}
         keyExtractor={(x) => x.name}
         labelExtractor={(x) => x.name}
-        initValue="listType without FlatList"
+        initValue="listType without FlatList but fixed header"
         initValueTextStyle={{ color: "black" }}
         selectStyle={{ borderColor: "black" }}
         selectTextStyle={{ color: "blue" }}

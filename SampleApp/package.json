@@ -3,7 +3,7 @@
   "scripts": {
     "start": "expo start",
     "postinstall": "npm run cp",
-    "cp": "cpx \"../*.js\" node_modules/react-native-modal-selector/ -u",
+    "cp": "cpx \"../*.{js,ts}\" node_modules/react-native-modal-selector/ -u",
     "nodemon": "nodemon nodemon.json",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -11,21 +11,25 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "expo": "^40.0.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
-    "react-native-web": "~0.13.12",
-    "react-native-modal-selector": "https://github.com/peacechen/react-native-modal-selector.git"
+    "expo": "~45.0.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-native": "0.68.2",
+    "react-native-modal-selector": "https://github.com/peacechen/react-native-modal-selector.git",
+    "react-native-web": "0.17.7"
   },
   "devDependencies": {
-    "babel-preset-expo": "8.3.0",
-    "@babel/core": "~7.9.0",
+    "@babel/core": "^7.12.9",
     "@deboxsoft/cpx": "^1.5.0",
-    "nodemon": "^1.18.10",
-    "typescript": "~4.0.0",
-    "@types/react": "~16.9.35",
-    "@types/react-native": "~0.63.2"
+    "@types/react": "17",
+    "@types/react-native": "0.67.9",
+    "babel-preset-expo": "9.1.0",
+    "nodemon": "2.0.16",
+    "typescript": "4.7.4"
+  },
+  "resolutions": {
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2"
   },
   "private": true
 }
