@@ -31,7 +31,8 @@
   "author": "Daniel Korger <dan@imake.io>",
   "contributors": [
     "Alex Spring <notlose@hotmail.com>",
-    "Peace Chen (https://github.com/peacechen)"
+    "Peace Chen (https://github.com/peacechen)",
+    "mikaello"
   ],
   "license": "MIT",
   "bugs": {
@@ -42,15 +43,14 @@
     "doc": "docs"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "^4.4.1",
-    "eslint-config-react-app": "^6.0.0",
-    "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-flowtype": "^5.4.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.2.1",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-react-native": "^3.0.1"
+    "@babel/core": "^7.18.5",
+    "@babel/eslint-parser": "^7.18.2",
+    "@babel/preset-react": "^7.17.12",
+    "eslint": "^8.18.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-native": "^4.0.0"
   }
 }
