@@ -175,6 +175,7 @@ Prop                | Type     | Optional | Default      | Description
 `enableLongPress`           | bool   | Yes | false              | enables long press. When true, `onModalOpen` returns `{longPress: true}`
 `optionsTestIDPrefix`       | string   | Yes | `'default'`      | This prefixes each selectable option's testID prop if no testID keys are provided in `props.data` array objects. Default for each option's testID: 'default-\<optionLabel\>'
 `header`     | node   | Yes | undefined          | Render a header above the list
+`onEndReached`     | function                  | Yes | undefined          | Called once when the scroll position gets of the rendered content.
 
 ### Methods
 

@@ -77,6 +77,7 @@ const propTypes = {
     enableLongPress:                PropTypes.bool,
     optionsTestIDPrefix:            PropTypes.string,
     header:                         PropTypes.node,
+    onEndReached:                   PropTypes.func,
 };
 
 const defaultProps = {
@@ -132,6 +133,7 @@ const defaultProps = {
     enableLongPress:                false,
     optionsTestIDPrefix:            'default',
     header:                         undefined,
+    onEndReached:                   undefined,
 };
 
 export default class ModalSelector extends React.Component {
@@ -322,6 +324,7 @@ export default class ModalSelector extends React.Component {
                                 accessibilityLabel={scrollViewAccessibilityLabel}
                                 keyExtractor={this.props.keyExtractor}
                                 renderItem={this.renderFlatlistOption}
+                                onEndReached={this.props.onEndReached}
                             />
                             :
                             <ScrollView
